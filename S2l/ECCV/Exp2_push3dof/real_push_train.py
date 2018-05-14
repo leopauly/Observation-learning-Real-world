@@ -63,6 +63,23 @@ demo_folder='./Demos/_Demo_push_1/'
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
+class RoboControl:
+    def __init__(self):
+         # Initialise node
+         self.vel_msg=Twist()
+         self.pub = rospy.Publisher('/cmd_vel_mux/input/teleop',Twist, queue_size=10)
+         rospy.init_node('cmd_vel_publisher', anonymous=True)
+         self.rate = rospy.Rate(10) # 10hz
+
+    def publish_control(self,x,y):
+        # Publishing values
+        self.vel_msg.angular.z=x
+        rospy.loginfo(self.vel_msg)
+        self.pub.publish(self.vel_msg)
+        rate.sleep()
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
+
 
 class Camera:
     def __init__(self):
