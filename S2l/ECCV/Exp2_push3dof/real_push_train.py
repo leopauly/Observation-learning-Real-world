@@ -19,13 +19,10 @@ from geometry_msgs.msg import Twist
 
 ## Imports for DNN
 import os
-from threading import Thread, Lock
 import sys
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import PIL.Image as Image
 import random
-import numpy as np
-import cv2
 import time
 import math
 import matplotlib.pyplot as plt
@@ -55,7 +52,7 @@ nb_classes=2
 feature_size=4608 #8192   #16384  #487
 num_controls=3 # linear x,y; angular z;
 #frame_feature_size=
-demo_folder='./Demos/real_demo_push_0/'
+demo_folder='./Demos/_Demo_push_1/'
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
@@ -83,6 +80,7 @@ class RoboControl:
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
+### Extracting frames from camera
 class Camera:
     def __init__(self):
         ## Initialise camera setting
@@ -98,7 +96,7 @@ class Camera:
 
         else:
             print('camera cant be opened :(')
-
+        
 
     def render(self):
         ## Capturing a single image from camera
@@ -107,14 +105,14 @@ class Camera:
         frame_bgr=cv2.resize(frame_,(112,112))
         cv2.imshow("preview", frame_bgr)
         frame_rgb = frame_bgr[...,::-1]
-        key = cv2.waitKey(0)
+        self.key = cv2.waitKey(100)
         
-        return frame_rgb
+        return np.array(frame_rgb)
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
-
+### Extracting features fromg each from using imagenet-vggnet 
 class Frame_Feature:
     def __init__(self):
          self.g=tf.Graph()
@@ -248,7 +246,7 @@ def s2l():
 
         robot.reset()   # Reset env in the begining of each episode
         obs_img=camera_obj.render()   # Get the observation
-        obs_img=np.array(misc.imresize(obs_img,[112,112,3]))
+        #obs_img=np.array(misc.imresize(obs_img,[112,112,3]))
         observation =np.array(frame_obj.frame_feature_extractor(obs_img))
         observation=observation.reshape(-1)
         reward_per_episode = 0
@@ -269,8 +267,8 @@ def s2l():
 
 
                 robot.publish_control(action)
-                obs_robo_=camera_obj.render()   # Get the observation
-                obs_robo=misc.imresize(obs_robo_,[112,112,3])
+                obs_robo=camera_obj.render()   # Get the observation
+                #obs_robo=misc.imresize(obs_robo,[112,112,3])
                 vid_robo_.append(obs_robo)
                 observation=np.array(frame_obj.frame_feature_extractor(np.array(obs_robo)))
                 observation=observation.reshape(-1)
