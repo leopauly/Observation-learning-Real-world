@@ -42,13 +42,13 @@ xrange=range # For python3
 start_training=64 # Buffer size, before starting to train the RL algorithm
 
 ## vars for feature extraction
-height=112
-width=112
+height=112 
+width=112 
 channel=3
 crop_size=112
 cluster_length=16 # Length of one activity
-nb_classes=2
-feature_size=4608 #8192   #16384  #487
+nb_classes=2 
+feature_size=4608 #8192   #16384  #487 
 num_controls=3 # linear x,y; angular z;
 #frame_feature_size=
 demo_folder='./Demos/real_demo_push_0/'
@@ -72,20 +72,21 @@ class RoboControl:
         rospy.loginfo(self.vel_msg)
         self.pub.publish(self.vel_msg)
         rate.sleep()
-
+ 
     def reset():
         print('Robot reset')
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
-#class Camera:
-#    def __init__(self):
-        # Initialise camera setting
 
-    #def render(self):
+class Camera:
+    def __init__(self):
+         # Initialise camera setting
+
+    def render(self):
         # Capturing a single image from camera
-    #    return captured_frame
+        return captured_frame
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -100,7 +101,7 @@ class Frame_Feature:
               #print(tf.contrib.graph_editor.get_tensors(self.g))   #(tf.get_default_graph()))
               self.base_model._make_predict_function()
               print('VggNet loaded with Imagenet values')
-
+    
     def frame_feature_extractor(self,frame_):
         frame= self.im_preprocess(frame_)
         frame=frame.reshape(-1,height,width,channel)
@@ -150,9 +151,9 @@ def demo_array_extractor(demo_vid_path):
 ### VIDEO FEATURE EXTRACTION
 
 class Vid_Feature:
-
+    
     def __init__(self):
-        self.saved_path='/home/rosnew/S2l_Storage/trained_activity_nets/'
+        self.saved_path='/home/rosnew/S2l_Storage/trained_activity_nets/' 
         self.network_name='activity_model.ckpt-104.meta'
         ### Activity_net
         self.g=tf.Graph()
@@ -162,7 +163,7 @@ class Vid_Feature:
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
             self.saver.restore(self.sess, os.path.join(saved_path,'activity_model.ckpt-104'))
-            print ("Model restored from file: %s" % saved_path)
+            print("Model restored from file: %s" % saved_path,flush=True)    
 
     ## For extracting activity features
     def feature_extractor(self,vid_np):
@@ -190,27 +191,27 @@ def distance(f_demo,f_robo):
 
 def s2l():
 
-    #Randomly initialize critic,actor,target critic, target actor network  and replay buffer
+    #Randomly initialize critic,actor,target critic, target actor network  and replay buffer   
     num_states = feature_size   #num_states = env.observation_space.shape[0]
-    num_actions = num_controls
+    num_actions = num_controls  
     print ("Number of States:", num_states)
     print ("Number of Actions:", num_actions)
     action_space_high=[0.0,0.0,0.0]
     action_space_low=[0.5,0.5,0.5]
     print ("Action space highest values", action_space_high)
-    print ("Action space lowest values:", action_space_low)
-    robot=RoboControl()
+    print ("Action space lowest values:", action_space_low) 
+    robot=RoboControl()    
 
     agent = DDPG(is_batch_norm,num_states,num_actions,action_space_high,action_space_low)
     exploration_noise = OUNoise(num_actions)
-    counter=0
+    counter=0 
     total_reward=0
     print ("Number of Rollouts per episode:", num_rollouts)
     print ("Number of Steps per roll out:", steps)
     reward_st = np.array([0])  #saving reward
     eval_metric_st= np.array([0])
     reward_st_all = np.array([0])  #saving reward after every step
-
+    
     activity_obj=Vid_Feature()
     demo_vid_array=demo_array_extractor(demo_folder)
     demo_features=activity_obj.feature_extractor(demo_vid_array)
@@ -220,7 +221,7 @@ def s2l():
 
     for episode in range(num_episodes):
         print ("==== Starting episode no:",episode,"====","\n")
-
+        
 
         robot.reset()   # Reset env in the begining of each episode
         obs_img=camera_obj.render()   # Get the observation
@@ -229,8 +230,8 @@ def s2l():
         observation=observation.reshape(-1)
         reward_per_episode = 0
 
-        for t in range(num_rollouts):
-
+        for t in range(num_rollouts):  
+        
             reward_per_rollout=0
             vid_robo_=[]
 
@@ -243,7 +244,7 @@ def s2l():
                 action = action[0] + noise #Select action according to current policy and exploration noise
                 print ('Action at episode-',episode,'rollout-',t, 'step-', i ," :",action)
 
-
+               
                 robot.publish_control(action)
                 obs_robo_=camera_obj.render()   # Get the observation
                 obs_robo=misc.imresize(obs_robo_,[112,112,3])
@@ -251,7 +252,7 @@ def s2l():
                 observation=np.array(frame_obj.frame_feature_extractor(np.array(obs_robo)))
                 observation=observation.reshape(-1)
                 #pasue()
-
+                
                 if(i==15):
                     vid_robo=np.array(vid_robo_)
                     robo_features=activity_obj.feature_extractor(vid_robo)
@@ -271,33 +272,33 @@ def s2l():
                 agent.add_experience(x,observation,action,reward,False)
                 reward_per_rollout+=reward
                 counter+=1
-
+                
             #train critic and actor network
-            if counter > start_training:
+            if counter > start_training: 
                     agent.train()
             print ('\n\n')
-
-            #Saving policy
+            
+            #Saving policy 
             if ((episode%100)==0 and t==num_rollouts-1):
                 print('saving policy...........................!')
                 agent.save_actor(episode)
 
 
-            reward_per_episode+=reward_per_rollout
+            reward_per_episode+=reward_per_rollout    
 
         #check if episode ends:
-
+        
         print ('EPISODE: ',episode,' Total Reward: ',reward_per_episode)
         print ("Printing reward to file")
         exploration_noise.reset() #reinitializing random noise for action exploration
         reward_st = np.append(reward_st,reward_per_episode)
         np.savetxt('episode_reward.txt',reward_st, fmt='%f', newline="\n")
         print ('\n\n')
+                     
+        total_reward+=reward_per_episode  
 
-        total_reward+=reward_per_episode
+    print ("Average reward per episode {}".format(total_reward / num_episodes))   
 
-    print ("Average reward per episode {}".format(total_reward / num_episodes))
-
-
-
+            
+        
 s2l()
