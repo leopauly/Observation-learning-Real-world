@@ -65,31 +65,51 @@ class RoboControl:
          self.vel_msg=Twist()
          self.pub = rospy.Publisher('/cmd_vel_mux/input/teleop',Twist, queue_size=10)
          rospy.init_node('cmd_vel_publisher', anonymous=True)
-         self.rate = rospy.Rate(10) # 10hz
+         #self.rate = rospy.Rate(10) # 10hz
 
-    def publish_control(self,l_x,l_y,a_z):
+    def publish_control(self,action):
         # Publishing values
-        self.vel_msg.linear.x=l_x
-        self.vel_msg.linear.y=l_y
-        self.vel_msg.angular.z=a_z
+        self.vel_msg.linear.x=action[0]
+        self.vel_msg.linear.y=action[1]
+        self.vel_msg.angular.z=action[2]
 
         rospy.loginfo(self.vel_msg)
         self.pub.publish(self.vel_msg)
-        rate.sleep()
+        #self.rate.sleep()
 
-    def reset():
+    def reset(self):
         print('Robot reset')
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
 
-#class Camera:
-#    def __init__(self):
-        # Initialise camera setting
+class Camera:
+    def __init__(self):
+        ## Initialise camera setting
+        cv2.namedWindow("preview")
+        self.vc = cv2.VideoCapture(0)
+        if self.vc.isOpened(): # try to get the first frame
+            print('camera_opened....!!')
+            rval, frame = self.vc.read()
+            if rval:
+                print('Frame grabbing successful')
+            else: 
+                print('Frame cant be grabbed')
 
-    #def render(self):
-        # Capturing a single image from camera
-    #    return captured_frame
+        else:
+            print('camera cant be opened :(')
+
+
+    def render(self):
+        ## Capturing a single image from camera
+        print('frame taken')
+        rval, frame_ = self.vc.read()
+        frame_bgr=cv2.resize(frame_,(112,112))
+        cv2.imshow("preview", frame_bgr)
+        frame_rgb = frame_bgr[...,::-1]
+        key = cv2.waitKey(0)
+        
+        return frame_rgb
 
 
 #-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------#
@@ -156,7 +176,7 @@ def demo_array_extractor(demo_vid_path):
 class Vid_Feature:
 
     def __init__(self):
-        self.saved_path='/home/rosnew/S2l_Storage/trained_activity_nets/'
+        self.saved_path='/home/roskinetic/S2l_Storage/trained_activity_nets/'
         self.network_name='activity_model.ckpt-104.meta'
         ### Activity_net
         self.g=tf.Graph()
@@ -165,8 +185,8 @@ class Vid_Feature:
             self.sess = tf.InteractiveSession(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=False))
             ## Restore model weights from previously saved model
             self.saver = tf.train.import_meta_graph(os.path.join(self.saved_path,self.network_name))
-            self.saver.restore(self.sess, os.path.join(saved_path,'activity_model.ckpt-104'))
-            print ("Model restored from file: %s" % saved_path)
+            self.saver.restore(self.sess, os.path.join(self.saved_path,'activity_model.ckpt-104'))
+            print ("Model restored from file: %s" % self.saved_path)
 
     ## For extracting activity features
     def feature_extractor(self,vid_np):

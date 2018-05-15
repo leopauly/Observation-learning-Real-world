@@ -10,8 +10,8 @@
 
 import rospy
 from geometry_msgs.msg import Twist
-import tensorflow as tf
-import keras
+#import tensorflow as tf
+#import keras
 
 def talker():
     vel_msg=Twist()
