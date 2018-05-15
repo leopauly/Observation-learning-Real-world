@@ -13,6 +13,10 @@ from ou_noise import OUNoise
 import matplotlib.pyplot as plt
 import scipy.misc as misc
 
+## Imports for ROS
+import rospy
+from geometry_msgs.msg import Twist
+
 ## Imports for DNN
 import os
 from threading import Thread, Lock
