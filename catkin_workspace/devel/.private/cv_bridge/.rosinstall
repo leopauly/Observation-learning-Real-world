@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/devel/.private/cv_bridge/setup.sh

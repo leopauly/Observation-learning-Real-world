@@ -1,0 +1,16 @@
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/_setup_util.py
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/env.sh
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/setup.bash
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/setup.sh
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/setup.zsh
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/.rosinstall
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/pkgconfig/cv_bridge.pc
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/share/cv_bridge/cmake/cv_bridge-extras.cmake
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/share/cv_bridge/cmake/cv_bridgeConfig.cmake
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/share/cv_bridge/cmake/cv_bridgeConfig-version.cmake
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/share/cv_bridge/package.xml
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/include/cv_bridge/cv_bridge.h
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/include/cv_bridge/rgb_colors.h
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge/boost/__init__.py
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/libcv_bridge.so
+/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so

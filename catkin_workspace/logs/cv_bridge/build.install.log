@@ -1,0 +1,56 @@
+[  0%] Built target std_msgs_generate_messages_eus
+[  0%] Built target sensor_msgs_generate_messages_lisp
+[  0%] Built target sensor_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_py
+[  0%] Built target sensor_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_nodejs
+[  0%] Built target sensor_msgs_generate_messages_nodejs
+[  0%] Built target geometry_msgs_generate_messages_cpp
+[  0%] Built target std_msgs_generate_messages_cpp
+[  0%] Built target geometry_msgs_generate_messages_eus
+[  0%] Built target std_msgs_generate_messages_py
+[  0%] Built target std_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_lisp
+[  0%] Built target geometry_msgs_generate_messages_nodejs
+[ 50%] Built target cv_bridge
+[100%] Built target cv_bridge_boost
+[36mInstall the project...[0m
+-- Install configuration: ""
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/_setup_util.py
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/env.sh
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/setup.bash
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/setup.sh
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/setup.zsh
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/.rosinstall
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/pkgconfig/cv_bridge.pc
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/share/cv_bridge/cmake/cv_bridge-extras.cmake
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/share/cv_bridge/cmake/cv_bridgeConfig.cmake
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/share/cv_bridge/cmake/cv_bridgeConfig-version.cmake
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/share/cv_bridge/package.xml
++ cd /home/roskinetic/Observation-learning-Real-world/catkin_workspace/src/vision_opencv/cv_bridge
++ mkdir -p /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages
++ /usr/bin/env PYTHONPATH=/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages:/home/roskinetic/Observation-learning-Real-world/catkin_workspace/build/cv_bridge/lib/python3/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages:/opt/ros/kinetic/lib/python2.7/dist-packages:/home/roskinetic/Observation-learning-Real-world/ddpg_rl CATKIN_BINARY_DIR=/home/roskinetic/Observation-learning-Real-world/catkin_workspace/build/cv_bridge /usr/bin/python3 /home/roskinetic/Observation-learning-Real-world/catkin_workspace/src/vision_opencv/cv_bridge/setup.py build --build-base /home/roskinetic/Observation-learning-Real-world/catkin_workspace/build/cv_bridge install --install-layout=deb --prefix=/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install --install-scripts=/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/bin
+running build
+running build_py
+creating /home/roskinetic/Observation-learning-Real-world/catkin_workspace/build/cv_bridge/lib
+creating /home/roskinetic/Observation-learning-Real-world/catkin_workspace/build/cv_bridge/lib/cv_bridge
+copying python/cv_bridge/core.py -> /home/roskinetic/Observation-learning-Real-world/catkin_workspace/build/cv_bridge/lib/cv_bridge
+copying python/cv_bridge/__init__.py -> /home/roskinetic/Observation-learning-Real-world/catkin_workspace/build/cv_bridge/lib/cv_bridge
+running install
+running install_lib
+creating /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge
+copying /home/roskinetic/Observation-learning-Real-world/catkin_workspace/build/cv_bridge/lib/cv_bridge/core.py -> /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge
+copying /home/roskinetic/Observation-learning-Real-world/catkin_workspace/build/cv_bridge/lib/cv_bridge/__init__.py -> /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge
+byte-compiling /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge/core.py to core.cpython-35.pyc
+byte-compiling /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge/__init__.py to __init__.cpython-35.pyc
+running install_egg_info
+Writing /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge-1.12.8.egg-info
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/include/cv_bridge
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/include/cv_bridge/cv_bridge.h
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/include/cv_bridge/rgb_colors.h
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge/boost/__init__.py
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/libcv_bridge.so
+-- Set runtime path of "/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/libcv_bridge.so" to ""
+-- Installing: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so
+-- Set runtime path of "/home/roskinetic/Observation-learning-Real-world/catkin_workspace/install/lib/python3/dist-packages/cv_bridge/boost/cv_bridge_boost.so" to ""

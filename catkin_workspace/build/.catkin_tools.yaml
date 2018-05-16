@@ -1,0 +1,6 @@
+devel_space: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/devel
+install: true
+install_space: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/install
+profile: default
+source_space: /home/roskinetic/Observation-learning-Real-world/catkin_workspace/src
+workspace: /home/roskinetic/Observation-learning-Real-world/catkin_workspace
