@@ -1,0 +1,8 @@
+prefix=/home/roskinetic/Observation-learning-Real-world/catkin_ws/devel
+
+Name: test_rosparam
+Description: Description of test_rosparam
+Version: 1.12.13
+Cflags: 
+Libs: -L/home/roskinetic/Observation-learning-Real-world/catkin_ws/devel/lib 
+Requires: 

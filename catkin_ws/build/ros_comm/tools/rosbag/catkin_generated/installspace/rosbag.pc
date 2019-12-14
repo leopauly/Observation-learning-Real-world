@@ -1,0 +1,8 @@
+prefix=/home/roskinetic/Observation-learning-Real-world/catkin_ws/install
+
+Name: rosbag
+Description: Description of rosbag
+Version: 1.12.13
+Cflags: -I/home/roskinetic/Observation-learning-Real-world/catkin_ws/install/include
+Libs: -L/home/roskinetic/Observation-learning-Real-world/catkin_ws/install/lib -lrosbag
+Requires: rosbag_storage rosconsole roscpp std_srvs topic_tools xmlrpcpp

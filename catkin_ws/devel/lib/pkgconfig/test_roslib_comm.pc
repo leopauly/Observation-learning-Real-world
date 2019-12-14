@@ -1,0 +1,8 @@
+prefix=/home/roskinetic/Observation-learning-Real-world/catkin_ws/devel
+
+Name: test_roslib_comm
+Description: Description of test_roslib_comm
+Version: 1.12.13
+Cflags: -I/home/roskinetic/Observation-learning-Real-world/catkin_ws/devel/include
+Libs: -L/home/roskinetic/Observation-learning-Real-world/catkin_ws/devel/lib 
+Requires: 
